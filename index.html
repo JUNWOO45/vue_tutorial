@@ -4,7 +4,7 @@
     <script src= "https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
   </head>
   <body>
-    <div id="app">
+    <!-- <div id="app">
       {{ message }}
     </div>
 
@@ -46,83 +46,134 @@
 
     <div id="app-8">
       {{message}}
+    </div> -->
+    <div id="app">
+      <h3>첫번째인스턴스</h3>
+      <my-global-component></my-global-component>
+      <my-local-component></my-local-component>
     </div>
-
+    <div id="app2">
+      <h3>
+        두번째인스턴스
+      </h3>
+      <my-global-component></my-global-component>
+      <my-local-component></my-local-component>
+    </div>
     <script>
-      var app = new Vue({
+      Vue.component('my-global-component', {
+        template: '<div>전역</div>'
+      });
+
+      var cmp = {
+        template: '<div>지역</div>'
+      };
+
+      new Vue({
         el: '#app',
-        data: {
-          message: '안녕하세요 Vuessdf!'
+        components: {
+          'my-local-component': cmp
         }
       });
 
-      var app2 = new Vue({
-        el: '#app-2',
-        data: {
-          message: 'this page is loaded at ' + new Date() + '.'
-        }
+      new Vue({
+        el:'#app2'
       });
 
-      var app3 = new Vue({
-        el: '#app-3',
-        data: {
-          seen: true
-        }
-      });
+      // Vue.component('my-component', {
+      //   template: '<div>전역컴포넌트등록되었습니당</div>'
+      // });
 
-      var app4 = new Vue({
-        el: '#app-4',
-        data: {
-          list: [
-            {text: 'my name'},
-            {text: 'is'},
-            {text: 'junwoo'}
-          ]
-        }
-      });
+      // new Vue({
+      //   el: '#app'
+      // });
+      // var cmp = {
+      //   template: '<div>지역컴포넌트</div>'
+      // };
+      // test = '<div>hello</div>'
 
-      var app5 = new Vue({
-        el: '#app-5',
-        data: {
-          message: "이 문장을 뒤집을 겁니다."
-        },
-        methods: {
-          reverseMessage: function() {
-            this.message = this.message.split('').reverse().join('');
-          }
-        }
-      });
+      // new Vue({
+      //   el: '#app',
+      //   // components: {
+      //   //   'my-local-component': cmp
+      //   // }
+      //   template: test
+      // });
+    </script>
+    <script>
+      // var app = new Vue({
+      //   el: '#app',
+      //   data: {
+      //     message: '안녕하세요 Vuessdf!'
+      //   }
+      // });
 
-      var app6 = new Vue({
-        el:'#app-6',
-        data: {
-          goodday: "good day commander?"
-        }
-      });
+      // var app2 = new Vue({
+      //   el: '#app-2',
+      //   data: {
+      //     message: 'this page is loaded at ' + new Date() + '.'
+      //   }
+      // });
 
-      Vue.component('myComponent', {
-        template: '<div>test myComponent</div>'
-      });
+      // var app3 = new Vue({
+      //   el: '#app-3',
+      //   data: {
+      //     seen: true
+      //   }
+      // });
 
-      var app8 = new Vue({
-        el: '#app-8',
-        data: {
-          message: "life cycle test!"
-        },
-        beforeCreate: function() {
-          console.log('beforeCreate');
-        },
-        created: function() {
-          console.log('created');
-        },
-        mounted: function() {
-          console.log('mounted');
-          this.message = "changed.. haha!"
-        },
-        updated: function() {
-          console.log('updated');
-        }
-      });
+      // var app4 = new Vue({
+      //   el: '#app-4',
+      //   data: {
+      //     list: [
+      //       {text: 'my name'},
+      //       {text: 'is'},
+      //       {text: 'junwoo'}
+      //     ]
+      //   }
+      // });
+
+      // var app5 = new Vue({
+      //   el: '#app-5',
+      //   data: {
+      //     message: "이 문장을 뒤집을 겁니다."
+      //   },
+      //   methods: {
+      //     reverseMessage: function() {
+      //       this.message = this.message.split('').reverse().join('');
+      //     }
+      //   }
+      // });
+
+      // var app6 = new Vue({
+      //   el:'#app-6',
+      //   data: {
+      //     goodday: "good day commander?"
+      //   }
+      // });
+
+      // Vue.component('myComponent', {
+      //   template: '<div>test myComponent</div>'
+      // });
+
+      // var app8 = new Vue({
+      //   el: '#app-8',
+      //   data: {
+      //     message: "life cycle test!"
+      //   },
+      //   beforeCreate: function() {
+      //     console.log('beforeCreate');
+      //   },
+      //   created: function() {
+      //     console.log('created');
+      //   },
+      //   mounted: function() {
+      //     console.log('mounted');
+      //     this.message = "changed.. haha!"
+      //   },
+      //   updated: function() {
+      //     console.log('updated');
+      //   }
+      // });
 
     </script>
   </body>
