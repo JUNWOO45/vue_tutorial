@@ -59,30 +59,70 @@
       <my-global-component></my-global-component>
       <my-local-component></my-local-component>
     </div> -->
+    <!-- <div id="app">
+      <child-component></child-component>
+    </div> -->
     <div id="app">
-      <child-component v-on:hahaha="printText"></child-component>
+      <child-component v-bind:propsdata="message"></child-component>
+      <sibling-component v-bind:propsdata="anotherMessage"></sibling-component>
     </div>
     <script>
       Vue.component('child-component', {
-        template: '<button v-on:click="showLog">show</button>',
-        methods: {
-          showLog: function() {
-            this.$emit('hahaha');
-          }
-        }
+        props: ['propsdata'],
+        template: '<p>{{propsdata}}</p>'
       });
 
-      var app = new Vue({
+      Vue.component('sibling-component', {
+        props: ['propsdata'],
+        template: '<p>{{propsdata}}</p>'
+      })
+
+      new Vue({
         el: '#app',
         data: {
-          message : 'hi gaon'
-        },
-        methods: {
-          printText: function() {
-            alert('received an event!');
-          }
+          message: 'check it out!',
+          anotherMessage: 'another!'
         }
       });
+      // var eventBus = new Vue();
+      // Vue.component('child-component', {
+      //   template: '<button v-on:click="showLog">show</button>',
+      //   methods: {
+      //     showLog: function() {
+      //       eventBus.$emit('gg', 100);
+      //     }
+      //   }
+      // });
+
+      // var app = new Vue({
+      //   el: '#app',
+      //   created: function() {
+      //     eventBus.$on('gg', function(value) {
+      //       alert(`value is ${value}`);
+      //     });
+      //   }
+      // });
+      
+      // Vue.component('child-component', {
+      //   template: '<button v-on:click="showLog">show</button>',
+      //   methods: {
+      //     showLog: function() {
+      //       this.$emit('hahaha');
+      //     }
+      //   }
+      // });
+
+      // var app = new Vue({
+      //   el: '#app',
+      //   data: {
+      //     message : 'hi gaon'
+      //   },
+      //   methods: {
+      //     printText: function() {
+      //       alert('received an event!');
+      //     }
+      //   }
+      // });
       // Vue.component('child-component', {
       //   props: ['bless'],
       //   template: '<div>{{bless}}</div>'
