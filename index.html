@@ -47,7 +47,7 @@
     <div id="app-8">
       {{message}}
     </div> -->
-    <div id="app">
+    <!-- <div id="app">
       <h3>첫번째인스턴스</h3>
       <my-global-component></my-global-component>
       <my-local-component></my-local-component>
@@ -58,26 +58,89 @@
       </h3>
       <my-global-component></my-global-component>
       <my-local-component></my-local-component>
+    </div> -->
+    <div id="app">
+      <child-component v-on:hahaha="printText"></child-component>
     </div>
     <script>
-      Vue.component('my-global-component', {
-        template: '<div>전역</div>'
-      });
-
-      var cmp = {
-        template: '<div>지역</div>'
-      };
-
-      new Vue({
-        el: '#app',
-        components: {
-          'my-local-component': cmp
+      Vue.component('child-component', {
+        template: '<button v-on:click="showLog">show</button>',
+        methods: {
+          showLog: function() {
+            this.$emit('hahaha');
+          }
         }
       });
 
-      new Vue({
-        el:'#app2'
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message : 'hi gaon'
+        },
+        methods: {
+          printText: function() {
+            alert('received an event!');
+          }
+        }
       });
+      // Vue.component('child-component', {
+      //   props: ['bless'],
+      //   template: '<div>{{bless}}</div>'
+      // });
+
+      // new Vue({
+      //   el: '#app',
+      //   data: {
+      //     message: {
+      //       name: 'park junwoo',
+      //       age: 29
+      //     },
+      //     greeting : 'hi one?'
+      //   }
+      // });
+      // var cmp1 = {
+      //   template: '<div>1st local: {{cmp1data}}</div>',
+      //   data: function() {
+      //     return {
+      //       cmp1data: 100
+      //     }
+      //   }
+      // };
+
+      // var cmp2 = {
+      //   template: '<div>2nd local: {{cmp2data}}</div>',
+      //   data: function() {
+      //     return {
+      //       cmp2data: 500
+      //     }
+      //   }
+      // };
+
+      // new Vue({
+      //   el: '#app',
+      //   components: {
+      //     'my-component1': cmp1,
+      //     'my-component2': cmp2
+      //   }
+      // })
+      // Vue.component('my-global-component', {
+      //   template: '<div>전역</div>'
+      // });
+
+      // var cmp = {
+      //   template: '<div>지역</div>'
+      // };
+
+      // new Vue({
+      //   el: '#app',
+      //   components: {
+      //     'my-local-component': cmp
+      //   }
+      // });
+
+      // new Vue({
+      //   el:'#app2'
+      // });
 
       // Vue.component('my-component', {
       //   template: '<div>전역컴포넌트등록되었습니당</div>'
