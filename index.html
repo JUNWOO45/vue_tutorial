@@ -2,9 +2,338 @@
 <html>
   <head>
     <script src= "https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src= "https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
   </head>
   <body>
+    <!-- <div id="app">
+      {{ message }}
+    </div>
+
+    <div id="app-2">
+      <span v-bind:title="message">
+        check title
+      </span>
+    </div>
+    
+    <div id="app-3">
+      <p v-if="seen">You can see me!</p>
+    </div>
+
+    <div id="app-4">
+      <ol>
+        <li v-for="content in list"> 
+          {{content.text}}
+        </li>
+      </ol>
+    </div>
+
+    <div id="app-5">
+      <p>
+        {{message}}
+      </p>
+      <button v-on:click="reverseMessage">reverse message!</button>
+    </div>
+
+    <div id="app-6">
+      <p>{{goodday}}</p>
+      <input type="text" v-model="goodday"></input>
+    </div>
+
+
+    <myComponent>this is my component</myComponent>
+    <div id="app-7">
+      여기는 app-7내부.
+    </div>
+
+    <div id="app-8">
+      {{message}}
+    </div> -->
+    <!-- <div id="app">
+      <h3>첫번째인스턴스</h3>
+      <my-global-component></my-global-component>
+      <my-local-component></my-local-component>
+    </div>
+    <div id="app2">
+      <h3>
+        두번째인스턴스
+      </h3>
+      <my-global-component></my-global-component>
+      <my-local-component></my-local-component>
+    </div> -->
+    <!-- <div id="app">
+      <child-component></child-component>
+    </div> -->
+    <!-- <div id="app">
+      <child-component v-bind:propsdata="message"></child-component>
+      <sibling-component v-bind:propsdata="anotherMessage"></sibling-component>
+    </div> -->
+    <!-- <div id="app">
+      <todo-item v-bind:check="item" v-for="item in languages" :key="item.id"></todo-item>
+    </div> -->
+    <div id="app">
+      <h1>Vue Router</h1>
+      <div>
+        <router-link to="/foo">Foo</router-link>
+        <router-link to="/bar">bar</router-link>
+        <router-view></router-view>
+      </div>
+    </div>
     <script>
+      var Foo = {
+        template: '<div>{{message}}</div>',
+        data: function() {
+          return {
+            message: 'helloFoo'
+          }
+        }
+      };
+      var Bar = {
+        template: '<div>{{message}}</div>',
+        data: function(){
+          return {
+            message: 'helloBar!!!'
+          }
+        }
+      };
+
+      var routes = [
+        {path: '/foo', component: Foo},
+        {path: '/bar', component: Bar}
+      ];
+
+      var router = new VueRouter({
+        routes
+      });
+
+      var app = new Vue({
+        router
+      }).$mount('#app');
+      // Vue.component('todo-item', {
+      //   props:['check'],
+      //   template: '<div>{{check.text}}</div>'
+      // })
+
+      // new Vue({
+      //   el: '#app',
+      //   data: {
+      //     languages : [
+      //       { id:0, text: 'aa'},
+      //       { id:1, text: 'bb'},
+      //       { id:2, text: 'cc'},
+      //       { id:3, text: 'dd'}
+      //     ]
+      //   }
+      // })
+      // Vue.component('child-component', {
+      //   props: ['propsdata'],
+      //   template: '<p>{{propsdata}}</p>'
+      // });
+
+      // Vue.component('sibling-component', {
+      //   props: ['propsdata'],
+      //   template: '<p>{{propsdata}}</p>'
+      // })
+
+      // new Vue({
+      //   el: '#app',
+      //   data: {
+      //     message: 'check it out!',
+      //     anotherMessage: 'another!'
+      //   }
+      // });
+      // var eventBus = new Vue();
+      // Vue.component('child-component', {
+      //   template: '<button v-on:click="showLog">show</button>',
+      //   methods: {
+      //     showLog: function() {
+      //       eventBus.$emit('gg', 100);
+      //     }
+      //   }
+      // });
+
+      // var app = new Vue({
+      //   el: '#app',
+      //   created: function() {
+      //     eventBus.$on('gg', function(value) {
+      //       alert(`value is ${value}`);
+      //     });
+      //   }
+      // });
+      
+      // Vue.component('child-component', {
+      //   template: '<button v-on:click="showLog">show</button>',
+      //   methods: {
+      //     showLog: function() {
+      //       this.$emit('hahaha');
+      //     }
+      //   }
+      // });
+
+      // var app = new Vue({
+      //   el: '#app',
+      //   data: {
+      //     message : 'hi gaon'
+      //   },
+      //   methods: {
+      //     printText: function() {
+      //       alert('received an event!');
+      //     }
+      //   }
+      // });
+      // Vue.component('child-component', {
+      //   props: ['bless'],
+      //   template: '<div>{{bless}}</div>'
+      // });
+
+      // new Vue({
+      //   el: '#app',
+      //   data: {
+      //     message: {
+      //       name: 'park junwoo',
+      //       age: 29
+      //     },
+      //     greeting : 'hi one?'
+      //   }
+      // });
+      // var cmp1 = {
+      //   template: '<div>1st local: {{cmp1data}}</div>',
+      //   data: function() {
+      //     return {
+      //       cmp1data: 100
+      //     }
+      //   }
+      // };
+
+      // var cmp2 = {
+      //   template: '<div>2nd local: {{cmp2data}}</div>',
+      //   data: function() {
+      //     return {
+      //       cmp2data: 500
+      //     }
+      //   }
+      // };
+
+      // new Vue({
+      //   el: '#app',
+      //   components: {
+      //     'my-component1': cmp1,
+      //     'my-component2': cmp2
+      //   }
+      // })
+      // Vue.component('my-global-component', {
+      //   template: '<div>전역</div>'
+      // });
+
+      // var cmp = {
+      //   template: '<div>지역</div>'
+      // };
+
+      // new Vue({
+      //   el: '#app',
+      //   components: {
+      //     'my-local-component': cmp
+      //   }
+      // });
+
+      // new Vue({
+      //   el:'#app2'
+      // });
+
+      // Vue.component('my-component', {
+      //   template: '<div>전역컴포넌트등록되었습니당</div>'
+      // });
+
+      // new Vue({
+      //   el: '#app'
+      // });
+      // var cmp = {
+      //   template: '<div>지역컴포넌트</div>'
+      // };
+      // test = '<div>hello</div>'
+
+      // new Vue({
+      //   el: '#app',
+      //   // components: {
+      //   //   'my-local-component': cmp
+      //   // }
+      //   template: test
+      // });
+    </script>
+    <script>
+      // var app = new Vue({
+      //   el: '#app',
+      //   data: {
+      //     message: '안녕하세요 Vuessdf!'
+      //   }
+      // });
+
+      // var app2 = new Vue({
+      //   el: '#app-2',
+      //   data: {
+      //     message: 'this page is loaded at ' + new Date() + '.'
+      //   }
+      // });
+
+      // var app3 = new Vue({
+      //   el: '#app-3',
+      //   data: {
+      //     seen: true
+      //   }
+      // });
+
+      // var app4 = new Vue({
+      //   el: '#app-4',
+      //   data: {
+      //     list: [
+      //       {text: 'my name'},
+      //       {text: 'is'},
+      //       {text: 'junwoo'}
+      //     ]
+      //   }
+      // });
+
+      // var app5 = new Vue({
+      //   el: '#app-5',
+      //   data: {
+      //     message: "이 문장을 뒤집을 겁니다."
+      //   },
+      //   methods: {
+      //     reverseMessage: function() {
+      //       this.message = this.message.split('').reverse().join('');
+      //     }
+      //   }
+      // });
+
+      // var app6 = new Vue({
+      //   el:'#app-6',
+      //   data: {
+      //     goodday: "good day commander?"
+      //   }
+      // });
+
+      // Vue.component('myComponent', {
+      //   template: '<div>test myComponent</div>'
+      // });
+
+      // var app8 = new Vue({
+      //   el: '#app-8',
+      //   data: {
+      //     message: "life cycle test!"
+      //   },
+      //   beforeCreate: function() {
+      //     console.log('beforeCreate');
+      //   },
+      //   created: function() {
+      //     console.log('created');
+      //   },
+      //   mounted: function() {
+      //     console.log('mounted');
+      //     this.message = "changed.. haha!"
+      //   },
+      //   updated: function() {
+      //     console.log('updated');
+      //   }
+      // });
     </script>
   </body>
 </html>
