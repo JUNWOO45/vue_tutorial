@@ -70,35 +70,81 @@
     <!-- <div id="app">
       <todo-item v-bind:check="item" v-for="item in languages" :key="item.id"></todo-item>
     </div> -->
-    <div id="app">
+    <!-- <div id="app">
       <h1>Vue Router</h1>
       <div>
         <router-link to="/foo">Foo</router-link>
         <router-link to="/bar">bar</router-link>
         <router-view></router-view>
       </div>
+    </div> -->
+    <div id="app">
+      <h1>Nested Router</h1>
+      <div>
+        <router-link to="/login">Login</router-link>
+        <router-link to="/list">List</router-link>
+      </div>
+      <router-view></router-view>
     </div>
     <script>
-      var Foo = {
-        template: '<div>{{message}}</div>',
-        data: function() {
-          return {
-            message: 'helloFoo'
-          }
-        }
+      var Login = {
+        template: `
+          <div>
+            Login Section
+              <router-view></router-view>
+          </div>
+        `
       };
-      var Bar = {
-        template: '<div>{{message}}</div>',
-        data: function(){
-          return {
-            message: 'helloBar!!!'
-          }
-        }
+
+      var LoginForm = {
+        template: `
+          <form action="/" method="post">
+            <div>
+              <label for="account">Email : </label>
+              <input type="email" id="account">
+            </div>
+            <div>
+              <label for="password">Password : </label>
+              <input type="password" id="password">
+            </div>
+          </form>
+        `
+      };
+
+      var List = {
+        template: `
+          <div>
+            List Section
+            <router-view></router-view>
+          </div>
+        `
+      };
+
+      var ListItems = {
+        template: `
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+          </ul>
+        `
       };
 
       var routes = [
-        {path: '/foo', component: Foo},
-        {path: '/bar', component: Bar}
+        {
+          path: '/login',
+          component: Login,
+          children: [
+            {path: '', component: LoginForm}
+          ]
+        },
+        {
+          path: '/list',
+          component: List,
+          children: [
+            {path: '', component: ListItems}
+          ]
+        }
       ];
 
       var router = new VueRouter({
@@ -108,6 +154,38 @@
       var app = new Vue({
         router
       }).$mount('#app');
+
+
+
+      // var Foo = {
+      //   template: '<div>{{message}}</div>',
+      //   data: function() {
+      //     return {
+      //       message: 'helloFoo'
+      //     }
+      //   }
+      // };
+      // var Bar = {
+      //   template: '<div>{{message}}</div>',
+      //   data: function(){
+      //     return {
+      //       message: 'helloBar!!!'
+      //     }
+      //   }
+      // };
+
+      // var routes = [
+      //   {path: '/foo', component: Foo},
+      //   {path: '/bar', component: Bar}
+      // ];
+
+      // var router = new VueRouter({
+      //   routes
+      // });
+
+      // var app = new Vue({
+      //   router
+      // }).$mount('#app');
       // Vue.component('todo-item', {
       //   props:['check'],
       //   template: '<div>{{check.text}}</div>'
