@@ -78,33 +78,44 @@
         <router-view></router-view>
       </div>
     </div> -->
-    <div id="app">
+    <!-- <div id="app">
       <h1>Nested Router</h1>
       <div>
         <router-link to="/login">Login</router-link>
         <router-link to="/list">List</router-link>
       </div>
       <router-view></router-view>
+    </div> -->
+
+    <div id="app">
+      <h1>Nested Router!</h1>
+      <p>
+        <router-link to="/login">login</router-link>
+        <router-link to="/list">list</router-link>
+        <router-link to="/main">main</router-link>
+        <router-view></router-view>
+        <!-- 할일: '/main'에 반응할 nested router를 아래에 추가해주세요! -->
+      </p>
     </div>
     <script>
       var Login = {
         template: `
           <div>
-            Login Section
-              <router-view></router-view>
+            Login
+            <router-view></router-view>
           </div>
         `
       };
 
       var LoginForm = {
         template: `
-          <form action="/" method="post">
+          <form action='/' method='post'>
             <div>
-              <label for="account">Email : </label>
+              <label for="account">e-mail : </label>
               <input type="email" id="account">
             </div>
             <div>
-              <label for="password">Password : </label>
+              <label for="password">password : </label>
               <input type="password" id="password">
             </div>
           </form>
@@ -114,7 +125,7 @@
       var List = {
         template: `
           <div>
-            List Section
+            List
             <router-view></router-view>
           </div>
         `
@@ -130,19 +141,54 @@
         `
       };
 
+      var Main = {
+        template: `
+          <div>
+            가족 이름은
+            <router-view></router-view>
+          </div>
+        `
+      }
+
+      var MainContent = {
+        template: `
+          <ul>
+            <li>jun</li>
+            <li>ga</li>
+            <li>flow</li>
+          </ul>
+        `
+      }
+
       var routes = [
         {
-          path: '/login',
+          path:'/login',
           component: Login,
           children: [
-            {path: '', component: LoginForm}
+            {
+              path: '',
+              component: LoginForm
+            }
           ]
         },
         {
-          path: '/list',
+          path:'/list',
           component: List,
           children: [
-            {path: '', component: ListItems}
+            {
+              path:'',
+              component: ListItems
+            }
+          ]
+        },
+        {
+          path: '/main',
+          component: Main,
+          children: [
+            {
+              path:'',
+              component: MainContent
+            }
           ]
         }
       ];
@@ -151,9 +197,77 @@
         routes
       });
 
-      var app = new Vue({
+      new Vue({
         router
       }).$mount('#app');
+
+      // var Login = {
+      //   template: `
+      //     <div>
+      //       Login Section
+      //         <router-view></router-view>
+      //     </div>
+      //   `
+      // };
+
+      // var LoginForm = {
+      //   template: `
+      //     <form action="/" method="post">
+      //       <div>
+      //         <label for="account">Email : </label>
+      //         <input type="email" id="account">
+      //       </div>
+      //       <div>
+      //         <label for="password">Password : </label>
+      //         <input type="password" id="password">
+      //       </div>
+      //     </form>
+      //   `
+      // };
+
+      // var List = {
+      //   template: `
+      //     <div>
+      //       List Section
+      //       <router-view></router-view>
+      //     </div>
+      //   `
+      // };
+
+      // var ListItems = {
+      //   template: `
+      //     <ul>
+      //       <li>1</li>
+      //       <li>2</li>
+      //       <li>3</li>
+      //     </ul>
+      //   `
+      // };
+
+      // var routes = [
+      //   {
+      //     path: '/login',
+      //     component: Login,
+      //     children: [
+      //       {path: '', component: LoginForm}
+      //     ]
+      //   },
+      //   {
+      //     path: '/list',
+      //     component: List,
+      //     children: [
+      //       {path: '', component: ListItems}
+      //     ]
+      //   }
+      // ];
+
+      // var router = new VueRouter({
+      //   routes
+      // });
+
+      // var app = new Vue({
+      //   router
+      // }).$mount('#app');
 
 
 
