@@ -1,33 +1,36 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <greeting></greeting>
+    <!-- <es5-greeting></es5-greeting> -->
+    <nav-header></nav-header>
+    <login-form></login-form>
+    <my-button></my-button>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  //ES5에서는.. 이런식으로 사용했었는데.. 
+  // var cmp = {
+  //   template: '<div> hello? </div>'
+  // }
+
+  // export default {
+  //   components: {
+  //     'login-form': cmp
+  //   }
+  // }
+
+  //ES6에서는 이렇게 디렉토리 구조를 이용해서..유지보수하기도 쉽게, 코드 가독성높게, 모듈을 분리.
+  import LoginForm from './components/LoginForm.vue'
+
+  import Button from './components/Button.vue'
+
+  export default {
+    components: {
+      'login-form': LoginForm,
+      'my-button': Button
     }
   }
-}
 </script>
 
 <style>
