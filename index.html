@@ -96,53 +96,87 @@
         <router-view></router-view>
       </p>
     </div> -->
-    <div id="app">
+    <!-- <div id="app"> -->
       <!-- {{ isGood ? message : ''}} -->
-      <div v-on:click="doSomething">체크</div>
+      <!-- <div v-on:click="doSomething">체크</div>
       <p v-if="seen" >보여요..</p>
       <a v-bind:href="url">네이버</a>
-      <div>{{message | capitalize}}</div>
+      <div>{{message | capitalize}}</div> -->
       <!-- <div id="{{ id }}">나의 아이디를 확인해라1</div> -->
-      <div :id = "id">나의 아이디를 확인해라2</div>
+      <!-- <div :id = "id">나의 아이디를 확인해라2</div>
       <div @click="calNum">+</div>
       <div>change.... {{ num }}</div>
       <div v-once>never change: {{ num }}</div>
       <div class="blackColor" v-bind:class="{ 'redColor': isA, 'blueColor': isB }">class binding</div>
-    </div>
+    </div> -->
+    <div id="app">
+      <header>
+        <h3>{{message}}</h3>
+      </header>
+      <section>
+        <p v-bind:id="uid"></p>
+        <button v-on:click="clickBtn">alert</button>
+        <button @click="clickMe">click me!</button>
 
+        <ul v-if="flag">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </section>
+      
+    </div>
     <script>
       new Vue({
         el: '#app',
         data: function() {
           return {
-            isGood: true,
-            message: 'junwoo',
-            seen: true,
-            url: 'https://www.naver.com',
-            id: 'hello-kk',
-            num: 0,
-            isA: true,
-            isB: true
-          };
-        },
-        methods: {
-          doSomething: function() {
-            this.seen = !this.seen
-          },
-          calNum: function() {
-            this.num += 1
+            message: 'Hello junwoo!',
+            uid: 10,
+            flag: true
           }
         },
-        filters: {
-          capitalize: function(value) {
-            if(!value) {
-              return '';
-            }
-            value = value.toString();
-            return value.charAt(0).toUpperCase() + value.slice(1);
+        methods: {
+          clickBtn() {
+            console.log('hi');
+          },
+          clickMe() {
+            this.flag = !this.flag
           }
         }
       })
+      // new Vue({
+      //   el: '#app',
+      //   data: function() {
+      //     return {
+      //       isGood: true,
+      //       message: 'junwoo',
+      //       seen: true,
+      //       url: 'https://www.naver.com',
+      //       id: 'hello-kk',
+      //       num: 0,
+      //       isA: true,
+      //       isB: true
+      //     };
+      //   },
+      //   methods: {
+      //     doSomething: function() {
+      //       this.seen = !this.seen
+      //     },
+      //     calNum: function() {
+      //       this.num += 1
+      //     }
+      //   },
+      //   filters: {
+      //     capitalize: function(value) {
+      //       if(!value) {
+      //         return '';
+      //       }
+      //       value = value.toString();
+      //       return value.charAt(0).toUpperCase() + value.slice(1);
+      //     }
+      //   }
+      // })
       // var Login = {
       //   template: `
       //     <div>
