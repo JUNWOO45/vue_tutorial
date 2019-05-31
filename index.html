@@ -101,6 +101,13 @@
       <div v-on:click="doSomething">체크</div>
       <p v-if="seen" >보여요..</p>
       <a v-bind:href="url">네이버</a>
+      <div>{{message | capitalize}}</div>
+      <!-- <div id="{{ id }}">나의 아이디를 확인해라1</div> -->
+      <div :id = "id">나의 아이디를 확인해라2</div>
+      <div @click="calNum">+</div>
+      <div>change.... {{ num }}</div>
+      <div v-once>never change: {{ num }}</div>
+      <div class="blackColor" v-bind:class="{ 'redColor': isA, 'blueColor': isB }">class binding</div>
     </div>
 
     <script>
@@ -111,14 +118,30 @@
             isGood: true,
             message: 'junwoo',
             seen: true,
-            url: 'https://www.naver.com'
+            url: 'https://www.naver.com',
+            id: 'hello-kk',
+            num: 0,
+            isA: true,
+            isB: true
           };
         },
         methods: {
-            doSomething: function() {
-              this.seen = !this.seen
-            }
+          doSomething: function() {
+            this.seen = !this.seen
+          },
+          calNum: function() {
+            this.num += 1
           }
+        },
+        filters: {
+          capitalize: function(value) {
+            if(!value) {
+              return '';
+            }
+            value = value.toString();
+            return value.charAt(0).toUpperCase() + value.slice(1);
+          }
+        }
       })
       // var Login = {
       //   template: `
