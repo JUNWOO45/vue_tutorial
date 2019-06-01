@@ -109,7 +109,7 @@
       <div v-once>never change: {{ num }}</div>
       <div class="blackColor" v-bind:class="{ 'redColor': isA, 'blueColor': isB }">class binding</div>
     </div> -->
-    <div id="app">
+    <!-- <div id="app">
       <header>
         <h3>{{message}}</h3>
       </header>
@@ -125,26 +125,41 @@
         </ul>
       </section>
       
+    </div> -->
+    <div id="app">
+      <input v-model="message">
     </div>
     <script>
       new Vue({
         el: '#app',
-        data: function() {
-          return {
-            message: 'Hello junwoo!',
-            uid: 10,
-            flag: true
-          }
+        data: {
+          message: 'junwooaa',
+          testM: 'gaon'
         },
-        methods: {
-          clickBtn() {
-            console.log('hi');
-          },
-          clickMe() {
-            this.flag = !this.flag
+        watch: {
+          message: function() {
+            console.log("this.message : ", this.message)
           }
         }
       })
+      // new Vue({
+      //   el: '#app',
+      //   data: function() {
+      //     return {
+      //       message: 'Hello junwoo!',
+      //       uid: 10,
+      //       flag: true
+      //     }
+      //   },
+      //   methods: {
+      //     clickBtn() {
+      //       console.log('hi');
+      //     },
+      //     clickMe() {
+      //       this.flag = !this.flag
+      //     }
+      //   }
+      // })
       // new Vue({
       //   el: '#app',
       //   data: function() {
